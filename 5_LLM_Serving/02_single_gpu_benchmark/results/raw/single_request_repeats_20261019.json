@@ -1,0 +1,111 @@
+{
+  "recorded_date": "2026-10-19",
+  "source": "User-pasted stdout and full-precision elapsed list in this conversation; not assistant-executed or a complete engine log.",
+  "source_code": {
+    "path": "5_LLM_Serving/02_single_gpu_benchmark/offline_smoke.py",
+    "sha256": "5A9C99777CF8AE309E3C2E3FE8E30712818AE090A20EBCFE3250D69DBB2FCD4B"
+  },
+  "configuration": {
+    "requests_per_generate": 1,
+    "isl": 512,
+    "osl": 128,
+    "n": 1,
+    "temperature": 0,
+    "max_tokens": 128,
+    "ignore_eos": true,
+    "detokenize": false,
+    "enable_prefix_caching": false,
+    "warmup_runs": 2,
+    "measurement_runs": 5,
+    "timer": "time.perf_counter",
+    "timing_boundary": "Immediately before llm.generate until immediately after return; initialization, own token preparation, validation and printing excluded."
+  },
+  "preceding_unwarmed_debug_run": {
+    "elapsed_s": 1.59933,
+    "included_in_summary": false
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "finished": true,
+      "requests": 1,
+      "prompt_tokens": 512,
+      "output_tokens": 128,
+      "finish_reason": "length",
+      "elapsed_s": 1.7503943970004912,
+      "request_throughput": 0.5712998177517129,
+      "input_token_throughput": 292.505506688877,
+      "output_token_throughput": 73.12637667221925,
+      "total_token_throughput": 365.63188336109624
+    },
+    {
+      "round": 2,
+      "finished": true,
+      "requests": 1,
+      "prompt_tokens": 512,
+      "output_tokens": 128,
+      "finish_reason": "length",
+      "elapsed_s": 1.7664037050017214,
+      "request_throughput": 0.5661220009720402,
+      "input_token_throughput": 289.8544644976846,
+      "output_token_throughput": 72.46361612442115,
+      "total_token_throughput": 362.31808062210575
+    },
+    {
+      "round": 3,
+      "finished": true,
+      "requests": 1,
+      "prompt_tokens": 512,
+      "output_tokens": 128,
+      "finish_reason": "length",
+      "elapsed_s": 1.8104119580020779,
+      "request_throughput": 0.5523604699913567,
+      "input_token_throughput": 282.8085606355746,
+      "output_token_throughput": 70.70214015889366,
+      "total_token_throughput": 353.5107007944683
+    },
+    {
+      "round": 4,
+      "finished": true,
+      "requests": 1,
+      "prompt_tokens": 512,
+      "output_tokens": 128,
+      "finish_reason": "length",
+      "elapsed_s": 1.6465131990007649,
+      "request_throughput": 0.6073440532434721,
+      "input_token_throughput": 310.9601552606577,
+      "output_token_throughput": 77.74003881516443,
+      "total_token_throughput": 388.7001940758221
+    },
+    {
+      "round": 5,
+      "finished": true,
+      "requests": 1,
+      "prompt_tokens": 512,
+      "output_tokens": 128,
+      "finish_reason": "length",
+      "elapsed_s": 1.667757809998875,
+      "request_throughput": 0.5996074454004053,
+      "input_token_throughput": 306.99901204500753,
+      "output_token_throughput": 76.74975301125188,
+      "total_token_throughput": 383.7487650562594
+    }
+  ],
+  "summary": {
+    "median_s": 1.7503943970004912,
+    "mean_s": 1.728296213800786,
+    "min_s": 1.6465131990007649,
+    "max_s": 1.8104119580020779,
+    "range_over_median_pct": 9.363533114718203,
+    "sample_std_s": 0.06898707465306962,
+    "sample_cv_pct": 3.9916233167783526,
+    "output_tps_from_median": 73.12637667221925,
+    "aggregate_output_tps": 74.06137847082853
+  },
+  "limitations": [
+    "Five samples only; not p95/p99 evidence.",
+    "No GPU power, clocks, temperature or other-process telemetry for this run.",
+    "Warmup sufficiency and cross-run reproducibility not established.",
+    "Not maximum throughput or online serving performance."
+  ]
+}

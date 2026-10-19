@@ -1,0 +1,123 @@
+{
+  "recorded_date": "2026-10-19",
+  "source": "User-pasted stdout and full-precision elapsed list in this conversation; not assistant-executed or a complete engine log.",
+  "source_code": {
+    "path": "5_LLM_Serving/02_single_gpu_benchmark/offline_smoke.py",
+    "sha256": "0529191D0057494EBC33EF55C79BFB2899598E62A4BB25551559EC7D5DBED045"
+  },
+  "configuration": {
+    "requests_per_generate": 8,
+    "isl": 512,
+    "osl": 128,
+    "n": 1,
+    "temperature": 0,
+    "max_tokens": 128,
+    "ignore_eos": true,
+    "detokenize": false,
+    "enable_prefix_caching": false,
+    "identical_prompts": true,
+    "warmup_runs": 2,
+    "measurement_runs": 5,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 2048,
+    "timer": "time.perf_counter",
+    "timing_boundary": "Immediately before llm.generate until immediately after return; initialization, own token preparation, validation and printing excluded."
+  },
+  "validation": {
+    "measured_request_count_asserted": true,
+    "every_measured_result_length_asserted": true,
+    "warmup_request_count_asserted": true,
+    "every_returned_warmup_result_length_asserted": true
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "requests": 8,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 4096,
+      "total_output_tokens": 1024,
+      "all_finished": true,
+      "elapsed_s": 2.007344331999775,
+      "request_throughput": 3.985365077863929,
+      "input_token_throughput": 2040.5069198663316,
+      "output_token_throughput": 510.1267299665829,
+      "total_token_throughput": 2550.6336498329147
+    },
+    {
+      "round": 2,
+      "requests": 8,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 4096,
+      "total_output_tokens": 1024,
+      "all_finished": true,
+      "elapsed_s": 1.9790695550000237,
+      "request_throughput": 4.042303606656161,
+      "input_token_throughput": 2069.6594466079546,
+      "output_token_throughput": 517.4148616519886,
+      "total_token_throughput": 2587.0743082599433
+    },
+    {
+      "round": 3,
+      "requests": 8,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 4096,
+      "total_output_tokens": 1024,
+      "all_finished": true,
+      "elapsed_s": 1.863314487000025,
+      "request_throughput": 4.2934244625984554,
+      "input_token_throughput": 2198.233324850409,
+      "output_token_throughput": 549.5583312126023,
+      "total_token_throughput": 2747.7916560630115
+    },
+    {
+      "round": 4,
+      "requests": 8,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 4096,
+      "total_output_tokens": 1024,
+      "all_finished": true,
+      "elapsed_s": 1.94162186000176,
+      "request_throughput": 4.120266754718526,
+      "input_token_throughput": 2109.5765784158853,
+      "output_token_throughput": 527.3941446039713,
+      "total_token_throughput": 2636.9707230198565
+    },
+    {
+      "round": 5,
+      "requests": 8,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 4096,
+      "total_output_tokens": 1024,
+      "all_finished": true,
+      "elapsed_s": 1.9076547119984752,
+      "request_throughput": 4.1936310327455075,
+      "input_token_throughput": 2147.1390887657,
+      "output_token_throughput": 536.784772191425,
+      "total_token_throughput": 2683.923860957125
+    }
+  ],
+  "summary": {
+    "median_s": 1.94162186000176,
+    "mean_s": 1.9398009892000119,
+    "min_s": 1.863314487000025,
+    "max_s": 2.007344331999775,
+    "range_over_median_pct": 7.4180172754966485,
+    "output_throughput_median": 527.3941446039713,
+    "request_throughput_median": 4.120266754718526,
+    "output_throughput_min": 510.1267299665829,
+    "output_throughput_max": 549.5583312126023,
+    "aggregate_output_throughput": 527.889203944733,
+    "ratio_to_n4": 1.8562217979944327,
+    "batch_time_ratio_to_n4": 1.0774574472516771
+  },
+  "limitations": [
+    "Comparison against separately executed earlier runs; no synchronized GPU-state telemetry.",
+    "Five samples only; not p95/p99 evidence.",
+    "Not maximum throughput or a measured saturation point."
+  ]
+}

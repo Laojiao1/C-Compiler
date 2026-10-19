@@ -1,0 +1,105 @@
+{
+  "recorded_date": "2026-10-19",
+  "source": "User-pasted stdout and full-precision elapsed list in this conversation; not assistant-executed or a complete engine log.",
+  "source_code_review": {
+    "path": "5_LLM_Serving/02_single_gpu_benchmark/offline_smoke.py",
+    "current_sha256": "76A0D4194A76AA45CFC676E8F3198498EA07A70A8FD7AB354B9D74BDAF7A0707",
+    "reviewed_num_requests": 64,
+    "scope": "Current code reviewed at N=64; historical per-run N=16 code fingerprint unavailable."
+  },
+  "configuration": {
+    "requests_per_generate": 16,
+    "isl": 512,
+    "osl": 128,
+    "n": 1,
+    "temperature": 0,
+    "max_tokens": 128,
+    "ignore_eos": true,
+    "detokenize": false,
+    "enable_prefix_caching": false,
+    "identical_prompts": true,
+    "warmup_runs": 2,
+    "measurement_runs": 5,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 2048,
+    "timer": "time.perf_counter",
+    "timing_boundary": "Immediately before llm.generate until immediately after return; initialization, own token preparation, validation and printing excluded."
+  },
+  "validation": {
+    "source": "Pasted EXACT_LENGTH_PASS markers; per-result assertions present in current reviewed N=64 code.",
+    "warmup_pass_markers": 2,
+    "measured_pass_markers": 5
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "requests": 16,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 8192,
+      "total_output_tokens": 2048,
+      "elapsed_s": 2.389087675997871,
+      "request_throughput": 6.697117130001159,
+      "input_token_throughput": 3428.9239705605933,
+      "output_token_throughput": 857.2309926401483,
+      "total_token_throughput": 4286.154963200742
+    },
+    {
+      "round": 2,
+      "requests": 16,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 8192,
+      "total_output_tokens": 2048,
+      "elapsed_s": 2.352017484998214,
+      "request_throughput": 6.802670516716907,
+      "input_token_throughput": 3482.967304559056,
+      "output_token_throughput": 870.741826139764,
+      "total_token_throughput": 4353.70913069882
+    },
+    {
+      "round": 3,
+      "requests": 16,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 8192,
+      "total_output_tokens": 2048,
+      "elapsed_s": 2.3812392330000876,
+      "request_throughput": 6.71919048630903,
+      "input_token_throughput": 3440.225528990223,
+      "output_token_throughput": 860.0563822475558,
+      "total_token_throughput": 4300.281911237779
+    },
+    {
+      "round": 4,
+      "requests": 16,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 8192,
+      "total_output_tokens": 2048,
+      "elapsed_s": 2.4397628309998254,
+      "request_throughput": 6.558014490877022,
+      "input_token_throughput": 3357.703419329035,
+      "output_token_throughput": 839.4258548322588,
+      "total_token_throughput": 4197.129274161293
+    },
+    {
+      "round": 5,
+      "requests": 16,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 8192,
+      "total_output_tokens": 2048,
+      "elapsed_s": 2.46086708599978,
+      "request_throughput": 6.501773334702332,
+      "input_token_throughput": 3328.907947367594,
+      "output_token_throughput": 832.2269868418985,
+      "total_token_throughput": 4161.134934209493
+    }
+  ],
+  "limitations": [
+    "Five measurements per N; no reliable p95/p99.",
+    "Separately executed per-N runs; no captured GPU-state telemetry or scheduler trace.",
+    "N=16/32 historical code hashes are unavailable; current hash belongs to N=64 only."
+  ]
+}

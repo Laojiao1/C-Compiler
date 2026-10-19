@@ -1,0 +1,122 @@
+{
+  "recorded_date": "2026-10-19",
+  "source": "User-pasted stdout and full-precision elapsed list in this conversation; not assistant-executed or a complete engine log.",
+  "source_code": {
+    "path": "5_LLM_Serving/02_single_gpu_benchmark/offline_smoke.py",
+    "sha256": "AE2CB2BDCE383214068160EE927E9149747E08BBB2515BA4CF5545BD98B81463"
+  },
+  "configuration": {
+    "requests_per_generate": 2,
+    "isl": 512,
+    "osl": 128,
+    "n": 1,
+    "temperature": 0,
+    "max_tokens": 128,
+    "ignore_eos": true,
+    "detokenize": false,
+    "enable_prefix_caching": false,
+    "identical_prompts": true,
+    "warmup_runs": 2,
+    "measurement_runs": 5,
+    "timer": "time.perf_counter",
+    "timing_boundary": "Immediately before llm.generate until immediately after return; initialization, own token preparation, validation and printing excluded."
+  },
+  "validation": {
+    "measured_request_count_asserted": true,
+    "every_measured_result_length_asserted": true,
+    "warmup_request_count_asserted": false,
+    "every_returned_warmup_result_length_asserted": true
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "requests": 2,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 1024,
+      "total_output_tokens": 256,
+      "all_finished": true,
+      "elapsed_s": 1.5678237679967424,
+      "request_throughput": 1.2756535784346876,
+      "input_token_throughput": 653.1346321585601,
+      "output_token_throughput": 163.28365803964002,
+      "total_token_throughput": 816.4182901982001
+    },
+    {
+      "round": 2,
+      "requests": 2,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 1024,
+      "total_output_tokens": 256,
+      "all_finished": true,
+      "elapsed_s": 1.4862393809999048,
+      "request_throughput": 1.3456782437392083,
+      "input_token_throughput": 688.9872607944747,
+      "output_token_throughput": 172.24681519861866,
+      "total_token_throughput": 861.2340759930934
+    },
+    {
+      "round": 3,
+      "requests": 2,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 1024,
+      "total_output_tokens": 256,
+      "all_finished": true,
+      "elapsed_s": 1.4646042589993158,
+      "request_throughput": 1.3655565916259802,
+      "input_token_throughput": 699.1649749125019,
+      "output_token_throughput": 174.79124372812547,
+      "total_token_throughput": 873.9562186406273
+    },
+    {
+      "round": 4,
+      "requests": 2,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 1024,
+      "total_output_tokens": 256,
+      "all_finished": true,
+      "elapsed_s": 1.496628757999133,
+      "request_throughput": 1.336336743036952,
+      "input_token_throughput": 684.2044124349194,
+      "output_token_throughput": 171.05110310872985,
+      "total_token_throughput": 855.2555155436493
+    },
+    {
+      "round": 5,
+      "requests": 2,
+      "each_prompt_tokens": 512,
+      "each_output_tokens": 128,
+      "total_prompt_tokens": 1024,
+      "total_output_tokens": 256,
+      "all_finished": true,
+      "elapsed_s": 1.4973813350006822,
+      "request_throughput": 1.3356651063098024,
+      "input_token_throughput": 683.8605344306188,
+      "output_token_throughput": 170.9651336076547,
+      "total_token_throughput": 854.8256680382735
+    }
+  ],
+  "summary": {
+    "median_s": 1.496628757999133,
+    "mean_s": 1.5025355001991556,
+    "min_s": 1.4646042589993158,
+    "max_s": 1.5678237679967424,
+    "range_over_median_pct": 6.896801123574721,
+    "output_throughput_median": 171.05110310872985,
+    "aggregate_output_throughput": 170.3786698990261
+  },
+  "comparison": {
+    "n1_elapsed_median_s": 1.7503943970004912,
+    "output_throughput_ratio_to_n1": 2.339116347517766,
+    "interpretation": "Observed comparison of separately executed runs; GPU state and kernel causes not established."
+  },
+  "limitations": [
+    "No reliable p95/p99 from five rounds.",
+    "Warmup request-count assertion missing in reviewed code; add before next run.",
+    "No synchronized GPU power, clocks, temperature or other-process telemetry.",
+    "N=2 only; no maximum throughput or saturation conclusion."
+  ]
+}

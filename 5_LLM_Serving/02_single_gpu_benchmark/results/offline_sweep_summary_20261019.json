@@ -1,0 +1,219 @@
+{
+  "recorded_date": "2026-10-19",
+  "source": "User-submitted measurements in conversation; statistics recomputed from full-precision elapsed samples.",
+  "model": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "weight_file": "model.safetensors",
+    "weight_bytes": 3087467144,
+    "weight_sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+    "files": [
+      ".gitattributes",
+      "LICENSE",
+      "README.md",
+      "config.json",
+      "generation_config.json",
+      "merges.txt",
+      "model.safetensors",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "vocab.json"
+    ]
+  },
+  "configuration": {
+    "isl": 512,
+    "osl": 128,
+    "n": 1,
+    "temperature": 0,
+    "dtype": "bfloat16",
+    "tensor_parallel_size": 1,
+    "gpu_memory_utilization": 0.7,
+    "max_model_len": 2048,
+    "max_num_seqs": 16,
+    "max_num_batched_tokens": 2048,
+    "enable_prefix_caching": false,
+    "ignore_eos": true,
+    "detokenize": false,
+    "warmup_runs_per_n": 2,
+    "measured_rounds_per_n": 5,
+    "identical_prompts": true,
+    "per_n_process": "Separate script starts as instructed; no fresh per-run environment capture."
+  },
+  "source_code_review": {
+    "current_sha256": "76A0D4194A76AA45CFC676E8F3198498EA07A70A8FD7AB354B9D74BDAF7A0707",
+    "current_num_requests": 64,
+    "historical_hashes": "Available for N=1,2,4,8 in their raw JSON; no exact run-time snapshots asserted."
+  },
+  "points": [
+    {
+      "requests": 1,
+      "raw_file": "raw/single_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        1.7503943970004912,
+        1.7664037050017214,
+        1.8104119580020779,
+        1.6465131990007649,
+        1.667757809998875
+      ],
+      "median_s": 1.7503943970004912,
+      "mean_s": 1.728296213800786,
+      "min_s": 1.6465131990007649,
+      "max_s": 1.8104119580020779,
+      "range_over_median_pct": 9.363533114718203,
+      "request_tps_median": 0.5712998177517129,
+      "output_tps_median": 73.12637667221925,
+      "output_tps_min": 70.70214015889366,
+      "output_tps_max": 77.74003881516443,
+      "aggregate_output_tps": 74.06137847082853
+    },
+    {
+      "requests": 2,
+      "raw_file": "raw/two_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        1.5678237679967424,
+        1.4862393809999048,
+        1.4646042589993158,
+        1.496628757999133,
+        1.4973813350006822
+      ],
+      "median_s": 1.496628757999133,
+      "mean_s": 1.5025355001991556,
+      "min_s": 1.4646042589993158,
+      "max_s": 1.5678237679967424,
+      "range_over_median_pct": 6.896801123574721,
+      "request_tps_median": 1.336336743036952,
+      "output_tps_median": 171.05110310872985,
+      "output_tps_min": 163.28365803964002,
+      "output_tps_max": 174.79124372812547,
+      "aggregate_output_tps": 170.3786698990261
+    },
+    {
+      "requests": 4,
+      "raw_file": "raw/four_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        1.802040409998881,
+        1.718960063997656,
+        1.649443981001241,
+        1.8053843439993216,
+        1.8254589530006342
+      ],
+      "median_s": 1.802040409998881,
+      "mean_s": 1.7602575503995468,
+      "min_s": 1.649443981001241,
+      "max_s": 1.8254589530006342,
+      "range_over_median_pct": 9.767537454917708,
+      "request_tps_median": 2.219706049767488,
+      "output_tps_median": 284.12237437023845,
+      "output_tps_min": 280.4774104388323,
+      "output_tps_max": 310.4076318428269,
+      "aggregate_output_tps": 290.86652682375103
+    },
+    {
+      "requests": 8,
+      "raw_file": "raw/eight_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        2.007344331999775,
+        1.9790695550000237,
+        1.863314487000025,
+        1.94162186000176,
+        1.9076547119984752
+      ],
+      "median_s": 1.94162186000176,
+      "mean_s": 1.9398009892000119,
+      "min_s": 1.863314487000025,
+      "max_s": 2.007344331999775,
+      "range_over_median_pct": 7.4180172754966485,
+      "request_tps_median": 4.120266754718526,
+      "output_tps_median": 527.3941446039713,
+      "output_tps_min": 510.1267299665829,
+      "output_tps_max": 549.5583312126023,
+      "aggregate_output_tps": 527.889203944733
+    },
+    {
+      "requests": 16,
+      "raw_file": "raw/sixteen_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        2.389087675997871,
+        2.352017484998214,
+        2.3812392330000876,
+        2.4397628309998254,
+        2.46086708599978
+      ],
+      "median_s": 2.389087675997871,
+      "mean_s": 2.4045948621991555,
+      "min_s": 2.352017484998214,
+      "max_s": 2.46086708599978,
+      "range_over_median_pct": 4.5561157966336205,
+      "request_tps_median": 6.697117130001159,
+      "output_tps_median": 857.2309926401483,
+      "output_tps_min": 832.2269868418985,
+      "output_tps_max": 870.741826139764,
+      "aggregate_output_tps": 851.7027263906624
+    },
+    {
+      "requests": 32,
+      "raw_file": "raw/thirty_two_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        4.813264252999943,
+        4.596878457999992,
+        4.675061481997545,
+        4.718965760999708,
+        4.765802346999408
+      ],
+      "median_s": 4.718965760999708,
+      "mean_s": 4.713994460199319,
+      "min_s": 4.596878457999992,
+      "max_s": 4.813264252999943,
+      "range_over_median_pct": 4.5854495658410945,
+      "request_tps_median": 6.7811468912249175,
+      "output_tps_median": 867.9868020767894,
+      "output_tps_min": 850.981742265055,
+      "output_tps_max": 891.039438484977,
+      "aggregate_output_tps": 868.9021666408177
+    },
+    {
+      "requests": 64,
+      "raw_file": "raw/sixty_four_request_repeats_20261019.json",
+      "measured_rounds": 5,
+      "elapsed_samples_s": [
+        9.362932940999599,
+        9.516304536999087,
+        9.389970159998484,
+        9.531553607001115,
+        9.405658794999908
+      ],
+      "median_s": 9.405658794999908,
+      "mean_s": 9.441284007999638,
+      "min_s": 9.362932940999599,
+      "max_s": 9.531553607001115,
+      "range_over_median_pct": 1.792757633214969,
+      "request_tps_median": 6.804414384457864,
+      "output_tps_median": 870.9650412106066,
+      "output_tps_min": 859.4611474442963,
+      "output_tps_max": 874.9395143190475,
+      "aggregate_output_tps": 867.6785904394874
+    }
+  ],
+  "plateau_observation": {
+    "first_sampled_n_in_flat_region": 16,
+    "output_tps_n16": 857.2309926401483,
+    "output_tps_n32": 867.9868020767894,
+    "output_tps_n64": 870.9650412106066,
+    "n32_over_n16": 1.0125471541847955,
+    "n64_over_n16": 1.0160214092681827,
+    "n64_over_n32": 1.0034312032472053,
+    "interpretation": "Observed flattening under fixed max_num_seqs=16 and token budget=2048; not proof of hardware saturation or scheduler causality."
+  },
+  "limitations": [
+    "Five samples per N; no statistically established tail percentiles.",
+    "No online latency, per-request completion times, TTFT, TPOT, GPU-state telemetry, queue time or runtime KV utilization.",
+    "Across-N order and separate process starts may confound comparison.",
+    "No official throughput benchmark cross-check yet."
+  ]
+}
