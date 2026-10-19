@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "weight_file": "model.safetensors",
+  "weight_bytes": 3087467144,
+  "weight_sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+  "files": [
+    ".gitattributes",
+    "LICENSE",
+    "README.md",
+    "config.json",
+    "generation_config.json",
+    "merges.txt",
+    "model.safetensors",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "vocab.json"
+  ]
+}

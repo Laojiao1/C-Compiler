@@ -1,0 +1,48 @@
+@triton.jit
+def softmax_kernel(
+    input_ptr,
+    output_ptr,
+    n_cols: tl.constexpr,
+    BLOCK_SIZE: tl.constexpr,
+):
+    # 一个 Triton Program 处理一整行
+    row_idx = tl.program_id(axis=0)
+
+    # 当前行的列索引
+    col_offsets = tl.arange(0, BLOCK_SIZE)
+
+    # 当前行在全局内存中的起始位置
+    row_start = row_idx * n_cols
+
+    # 当前行每个元素的地址
+    input_ptrs = input_ptr + row_start + col_offsets
+
+    # BLOCK_SIZE 可能大于真实列数
+    mask = col_offsets < n_cols
+
+    # 越界位置填 -inf，避免参与 max
+    row = tl.load(
+        input_ptrs,
+        mask=mask,
+        other=-float("inf"),
+    )
+
+    # 第一次 reduction：求整行最大值
+    row_max = tl.max(row, axis=0)
+
+    # Softmax 数值稳定化
+    numerator = tl.exp(row - row_max)
+
+    # 第二次 reduction：求指数和
+    denominator = tl.sum(numerator, axis=0)
+
+    # Softmax
+    softmax_output = numerator / denominator
+
+    # 写回当前行
+    output_ptrs = output_ptr + row_start + col_offsets
+    tl.store(
+        output_ptrs,
+        softmax_output,
+        mask=mask,
+    )
