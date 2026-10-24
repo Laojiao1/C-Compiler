@@ -1,0 +1,91 @@
+{
+  "recorded_date": "2026-10-21",
+  "source_root": "E:\\Code\\C++Compiler\\5_LLM_Serving\\03_scheduler_kv_cache",
+  "snapshot_scope": "Archive-time source hashes; not an independently captured execution-time snapshot.",
+  "test_log": {
+    "path": "results/raw/tests_pass_20261021.log",
+    "sha256": "47380d5eaa88c997bd2530f1dce175cc57e8728da82ddb04dc5c5f29fb5d96ca",
+    "source": "User-provided terminal output, archived unchanged; no assistant rerun in this finalization turn.",
+    "command": "python -m unittest discover -s tests -v",
+    "tests": 51,
+    "elapsed_s": 0.68,
+    "result": "OK"
+  },
+  "files": [
+    {
+      "path": "attention_reference.py",
+      "sha256": "5f083113fa6b189afdcbd189a9f4e87fd1f75e7b72867c7a78ed2c1aab1ccd5f",
+      "bytes": 1654
+    },
+    {
+      "path": "paged_kv_store.py",
+      "sha256": "5be8c3cdeaa19834a6bf32821ebc944023861ea9ab69f9a2d49920828f29286e",
+      "bytes": 3806
+    },
+    {
+      "path": "paged_kv.py",
+      "sha256": "689211d2ed7bcd03dd7937d31fe1361653863d2e3ec348ace025538d651449bb",
+      "bytes": 5093
+    },
+    {
+      "path": "prefix_cache.py",
+      "sha256": "e0af033f9e4a593adb32348112cc62e734c8237bc3383e8d044f33de5ca4b2ea",
+      "bytes": 7685
+    },
+    {
+      "path": "README.md",
+      "sha256": "7df3c3f96867717e8fc939d9074accfcdd4875e4db38dd295c38b90677c9cb3d",
+      "bytes": 2007
+    },
+    {
+      "path": "tests/__init__.py",
+      "sha256": "3d6df345ee3834f14a90599351d2b92bb12d0df749b8fe099274f8f197c4fe5b",
+      "bytes": 53
+    },
+    {
+      "path": "tests/test_addressing.py",
+      "sha256": "a9d7c8f932358e08c61f54b97a89db5897648a489d83619255c8eaa7a15819d3",
+      "bytes": 1368
+    },
+    {
+      "path": "tests/test_attention_reference.py",
+      "sha256": "dbe991a44a3bc1cc559d38cf43159fce01f4efc166fe05b445759b5fd6433bed",
+      "bytes": 4297
+    },
+    {
+      "path": "tests/test_block_pool.py",
+      "sha256": "b6e36b883837961c8361ffe7bec71ae53a056a4fa45bca4ae5b9199560afaaf3",
+      "bytes": 2035
+    },
+    {
+      "path": "tests/test_kv_store.py",
+      "sha256": "bcf2a9fa8b37ebd050b4f3a4b9704ce0621a1e6edd6a56ca538bd54697252ddf",
+      "bytes": 5190
+    },
+    {
+      "path": "tests/test_prefix_cache.py",
+      "sha256": "2de38e043102e00f20c508320135a0d3ff8466d45e7bd2e47987d0c8dd1bace7",
+      "bytes": 6099
+    },
+    {
+      "path": "tests/test_prefix_eviction.py",
+      "sha256": "9c4ea635b41dbaacf3883f6292b5d5bd36a97a463535a26cba6280e87946a4d4",
+      "bytes": 4817
+    },
+    {
+      "path": "tests/test_prefix_hashes.py",
+      "sha256": "cd40c872596e842a345016740c9574e8c1ed4beb9adaff7acb29dfb1000fe912",
+      "bytes": 4142
+    },
+    {
+      "path": "tests/test_prefix_sharing.py",
+      "sha256": "3298f1b492427148c5e9f122865aa06a3ab8862e05a9a84a7ea525d6a19f6f17",
+      "bytes": 5686
+    },
+    {
+      "path": "tests/test_request_kv.py",
+      "sha256": "8c366d26480cb31542e778bc36fc5896dbd08b8900f2f18aee4ecdebf2b32c37",
+      "bytes": 3389
+    }
+  ]
+}

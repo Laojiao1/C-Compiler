@@ -1,0 +1,859 @@
+{
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.31",
+    "torch": "2.13.0+cu129",
+    "torch_cuda_build": "12.9",
+    "device": "cpu",
+    "dtype": "float32",
+    "num_layers": 1,
+    "num_kv_heads": 1,
+    "head_dim": 2,
+    "real_model_loaded": false
+  },
+  "cases": {
+    "mixed": {
+      "config": {
+        "num_blocks": 32,
+        "block_size": 4,
+        "token_budget": 8,
+        "max_num_seqs": 3,
+        "max_model_len": 32
+      },
+      "initial_generated_tokens": {
+        "A": 1,
+        "B": 1,
+        "C": 0,
+        "D": 0
+      },
+      "trace": [
+        {
+          "step": 0,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "decode",
+              "start_pos": 8,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "B",
+              "phase": "decode",
+              "start_pos": 8,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "C",
+              "phase": "prefill",
+              "start_pos": 0,
+              "num_tokens": 6
+            }
+          ],
+          "emitted": [
+            "A",
+            "B"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "used_tokens": 8,
+          "used_blocks": 8,
+          "states": {
+            "D": "not_arrived",
+            "A": "running",
+            "B": "running",
+            "C": "running"
+          },
+          "kv_tokens": {
+            "C": 6,
+            "A": 9,
+            "B": 9,
+            "D": 0
+          },
+          "block_tables": {
+            "C": [
+              6,
+              7
+            ],
+            "A": [
+              0,
+              1,
+              4
+            ],
+            "B": [
+              2,
+              3,
+              5
+            ],
+            "D": []
+          },
+          "phase_tokens": {
+            "prefill": 6,
+            "decode": 2,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "C": 0,
+            "A": 2,
+            "B": 2,
+            "D": 0
+          },
+          "recompute_until": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          }
+        },
+        {
+          "step": 1,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "decode",
+              "start_pos": 9,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "B",
+              "phase": "decode",
+              "start_pos": 9,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "C",
+              "phase": "prefill",
+              "start_pos": 6,
+              "num_tokens": 4
+            }
+          ],
+          "emitted": [
+            "A",
+            "B",
+            "C"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "used_tokens": 6,
+          "used_blocks": 9,
+          "states": {
+            "D": "not_arrived",
+            "A": "running",
+            "B": "running",
+            "C": "running"
+          },
+          "kv_tokens": {
+            "C": 10,
+            "A": 10,
+            "B": 10,
+            "D": 0
+          },
+          "block_tables": {
+            "C": [
+              6,
+              7,
+              8
+            ],
+            "A": [
+              0,
+              1,
+              4
+            ],
+            "B": [
+              2,
+              3,
+              5
+            ],
+            "D": []
+          },
+          "phase_tokens": {
+            "prefill": 4,
+            "decode": 2,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "C": 1,
+            "A": 3,
+            "B": 3,
+            "D": 0
+          },
+          "recompute_until": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          }
+        },
+        {
+          "step": 2,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "decode",
+              "start_pos": 10,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "B",
+              "phase": "decode",
+              "start_pos": 10,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "C",
+              "phase": "decode",
+              "start_pos": 10,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "A",
+            "B",
+            "C"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "used_tokens": 3,
+          "used_blocks": 3,
+          "states": {
+            "D": "not_arrived",
+            "C": "running",
+            "A": "finished",
+            "B": "finished"
+          },
+          "kv_tokens": {
+            "C": 11,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "block_tables": {
+            "C": [
+              6,
+              7,
+              8
+            ],
+            "A": [],
+            "B": [],
+            "D": []
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 3,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "C": 2,
+            "A": 4,
+            "B": 4,
+            "D": 0
+          },
+          "recompute_until": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          }
+        },
+        {
+          "step": 3,
+          "plan": [
+            {
+              "request_id": "C",
+              "phase": "decode",
+              "start_pos": 11,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "D",
+              "phase": "prefill",
+              "start_pos": 0,
+              "num_tokens": 3
+            }
+          ],
+          "emitted": [
+            "C",
+            "D"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "used_tokens": 4,
+          "used_blocks": 1,
+          "states": {
+            "D": "running",
+            "A": "finished",
+            "B": "finished",
+            "C": "finished"
+          },
+          "kv_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 3
+          },
+          "block_tables": {
+            "C": [],
+            "A": [],
+            "B": [],
+            "D": [
+              9
+            ]
+          },
+          "phase_tokens": {
+            "prefill": 3,
+            "decode": 1,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "C": 3,
+            "A": 4,
+            "B": 4,
+            "D": 1
+          },
+          "recompute_until": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          }
+        },
+        {
+          "step": 4,
+          "plan": [
+            {
+              "request_id": "D",
+              "phase": "decode",
+              "start_pos": 3,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "D"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "used_tokens": 1,
+          "used_blocks": 0,
+          "states": {
+            "A": "finished",
+            "B": "finished",
+            "C": "finished",
+            "D": "finished"
+          },
+          "kv_tokens": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          },
+          "block_tables": {
+            "C": [],
+            "A": [],
+            "B": [],
+            "D": []
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 1,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "C": 3,
+            "A": 4,
+            "B": 4,
+            "D": 2
+          },
+          "recompute_until": {
+            "C": 0,
+            "A": 0,
+            "B": 0,
+            "D": 0
+          }
+        }
+      ]
+    },
+    "preemption": {
+      "config": {
+        "num_blocks": 4,
+        "block_size": 4,
+        "token_budget": 14,
+        "max_num_seqs": 2,
+        "max_model_len": 32
+      },
+      "initial_generated_tokens": {
+        "A": 0,
+        "B": 0
+      },
+      "explicit_preemption": {
+        "request_id": "B",
+        "dropped_kv_tokens": 8,
+        "freed_blocks": 2
+      },
+      "trace": [
+        {
+          "step": 0,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "prefill",
+              "start_pos": 0,
+              "num_tokens": 7
+            },
+            {
+              "request_id": "B",
+              "phase": "prefill",
+              "start_pos": 0,
+              "num_tokens": 7
+            }
+          ],
+          "emitted": [
+            "A",
+            "B"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "used_tokens": 14,
+          "used_blocks": 4,
+          "states": {
+            "A": "running",
+            "B": "running"
+          },
+          "kv_tokens": {
+            "A": 7,
+            "B": 7
+          },
+          "block_tables": {
+            "A": [
+              0,
+              1
+            ],
+            "B": [
+              2,
+              3
+            ]
+          },
+          "phase_tokens": {
+            "prefill": 14,
+            "decode": 0,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 1,
+            "B": 1
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 0
+          }
+        },
+        {
+          "step": 1,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "decode",
+              "start_pos": 7,
+              "num_tokens": 1
+            },
+            {
+              "request_id": "B",
+              "phase": "decode",
+              "start_pos": 7,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "A",
+            "B"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "used_tokens": 2,
+          "used_blocks": 4,
+          "states": {
+            "A": "running",
+            "B": "running"
+          },
+          "kv_tokens": {
+            "A": 8,
+            "B": 8
+          },
+          "block_tables": {
+            "A": [
+              0,
+              1
+            ],
+            "B": [
+              2,
+              3
+            ]
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 2,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 2,
+            "B": 2
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 0
+          }
+        },
+        {
+          "step": 2,
+          "plan": [],
+          "emitted": [],
+          "blocked": [
+            "A",
+            "B"
+          ],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "used_tokens": 0,
+          "used_blocks": 4,
+          "states": {
+            "A": "running",
+            "B": "running"
+          },
+          "kv_tokens": {
+            "A": 8,
+            "B": 8
+          },
+          "block_tables": {
+            "A": [
+              0,
+              1
+            ],
+            "B": [
+              2,
+              3
+            ]
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 0,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 2,
+            "B": 2
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 0
+          }
+        },
+        {
+          "step": 3,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "decode",
+              "start_pos": 8,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "A"
+          ],
+          "blocked": [
+            "B"
+          ],
+          "preemptions": [
+            {
+              "request_id": "B",
+              "dropped_kv_tokens": 8,
+              "freed_blocks": 2
+            }
+          ],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "used_tokens": 1,
+          "used_blocks": 3,
+          "states": {
+            "B": "waiting",
+            "A": "running"
+          },
+          "kv_tokens": {
+            "A": 9,
+            "B": 0
+          },
+          "block_tables": {
+            "A": [
+              0,
+              1,
+              2
+            ],
+            "B": []
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 1,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 3,
+            "B": 2
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 8
+          }
+        },
+        {
+          "step": 4,
+          "plan": [
+            {
+              "request_id": "A",
+              "phase": "decode",
+              "start_pos": 9,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "A"
+          ],
+          "blocked": [
+            "B"
+          ],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "used_tokens": 1,
+          "used_blocks": 0,
+          "states": {
+            "B": "waiting",
+            "A": "finished"
+          },
+          "kv_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "block_tables": {
+            "A": [],
+            "B": []
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 1,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 4,
+            "B": 2
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 8
+          }
+        },
+        {
+          "step": 5,
+          "plan": [
+            {
+              "request_id": "B",
+              "phase": "recompute",
+              "start_pos": 0,
+              "num_tokens": 8
+            }
+          ],
+          "emitted": [],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 8,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 8
+          },
+          "used_tokens": 8,
+          "used_blocks": 2,
+          "states": {
+            "B": "running",
+            "A": "finished"
+          },
+          "kv_tokens": {
+            "A": 0,
+            "B": 8
+          },
+          "block_tables": {
+            "A": [],
+            "B": [
+              3,
+              0
+            ]
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 0,
+            "recompute": 8
+          },
+          "generated_tokens": {
+            "A": 4,
+            "B": 2
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 0
+          }
+        },
+        {
+          "step": 6,
+          "plan": [
+            {
+              "request_id": "B",
+              "phase": "decode",
+              "start_pos": 8,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "B"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 8
+          },
+          "used_tokens": 1,
+          "used_blocks": 3,
+          "states": {
+            "B": "running",
+            "A": "finished"
+          },
+          "kv_tokens": {
+            "A": 0,
+            "B": 9
+          },
+          "block_tables": {
+            "A": [],
+            "B": [
+              3,
+              0,
+              1
+            ]
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 1,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 4,
+            "B": 3
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 0
+          }
+        },
+        {
+          "step": 7,
+          "plan": [
+            {
+              "request_id": "B",
+              "phase": "decode",
+              "start_pos": 9,
+              "num_tokens": 1
+            }
+          ],
+          "emitted": [
+            "B"
+          ],
+          "blocked": [],
+          "preemptions": [],
+          "recomputed_tokens": 0,
+          "total_recomputed_tokens": {
+            "A": 0,
+            "B": 8
+          },
+          "used_tokens": 1,
+          "used_blocks": 0,
+          "states": {
+            "A": "finished",
+            "B": "finished"
+          },
+          "kv_tokens": {
+            "A": 0,
+            "B": 0
+          },
+          "block_tables": {
+            "A": [],
+            "B": []
+          },
+          "phase_tokens": {
+            "prefill": 0,
+            "decode": 1,
+            "recompute": 0
+          },
+          "generated_tokens": {
+            "A": 4,
+            "B": 4
+          },
+          "recompute_until": {
+            "A": 0,
+            "B": 0
+          }
+        }
+      ]
+    }
+  }
+}

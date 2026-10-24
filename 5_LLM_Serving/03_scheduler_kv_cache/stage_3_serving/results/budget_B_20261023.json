@@ -1,0 +1,17 @@
+{
+  "purpose": "controlled_budget_chunked_prefill",
+  "config": "B",
+  "warmup_rounds": [],
+  "measured_rounds": [],
+  "snapshots": [],
+  "summary": {
+    "valid": false
+  },
+  "error": {
+    "type": "URLError",
+    "message": "<urlopen error timed out>"
+  },
+  "scope": "client-observed finite batch; not GPU step timing or steady-state limit",
+  "workload_file": "stage_3_serving/results/mixed_workload_20261023.json",
+  "workload_sha256": "4f2fe08f866a275ccee1423e18b6f999342f76babca5c8e3b26b9b61f03ba00f"
+}

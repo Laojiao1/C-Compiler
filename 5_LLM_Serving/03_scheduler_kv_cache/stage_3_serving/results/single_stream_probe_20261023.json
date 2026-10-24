@@ -1,0 +1,166 @@
+{
+  "measurement_valid": true,
+  "issues": [],
+  "error": null,
+  "times_s": {
+    "send": 0.0,
+    "first_content": 0.2088249390000101,
+    "last_content": 0.45772896100004345,
+    "done": 0.4707117880000169
+  },
+  "metrics": {
+    "client_ttft_ms": 208.8249390000101,
+    "client_e2e_ms": 470.7117880000169,
+    "client_tpot_ms": 11.386384739130731
+  },
+  "usage": {
+    "prompt_tokens": 42,
+    "total_tokens": 66,
+    "completion_tokens": 24
+  },
+  "finish_reason": "stop",
+  "saw_done": true,
+  "content_chunk_count": 23,
+  "text": "在大模型推理中，KV Cache 用于缓存中间结果，提高模型推理的效率和性能。",
+  "events": [
+    {
+      "elapsed_s": 0.20874978500000907,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"logprobs\":null,\"finish_reason\":null}],\"prompt_token_ids\":null,\"prompt_text\":null}"
+    },
+    {
+      "elapsed_s": 0.2088249390000101,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"在\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.2186528400000043,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"大\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.22998704700000872,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"模型\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.24079948199994305,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"推理\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.2523978619999525,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"中\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.2637575649999917,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"，\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.2751236379999682,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"KV\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.2871824369999558,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" Cache\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.29838301400002365,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" \"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.30956685399996786,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"用于\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.32040031799999724,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"缓\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.33173795200002587,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"存\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.3426714739999852,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"中间\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.3539063539999461,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"结果\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.3650749140000471,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"，\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.37664763800000856,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"提高\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.387705561999951,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"模型\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.39975854900001195,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"推理\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.4113265239999464,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"的\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.4229614869999523,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"效率\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.434630210000023,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"和\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.4461769560000448,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"性能\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.45772896100004345,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"。\"},\"logprobs\":null,\"finish_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.47063637300004757,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"\"},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}]}"
+    },
+    {
+      "elapsed_s": 0.4706988249999995,
+      "data": "{\"id\":\"chatcmpl-8a8666f16011ac35\",\"object\":\"chat.completion.chunk\",\"created\":1792736528,\"model\":\"qwen2.5-1.5b\",\"choices\":[],\"usage\":{\"prompt_tokens\":42,\"total_tokens\":66,\"completion_tokens\":24},\"system_fingerprint\":\"vllm-0.31.0-b0fd6cb6\"}"
+    },
+    {
+      "elapsed_s": 0.4707117880000169,
+      "data": "[DONE]"
+    }
+  ],
+  "url": "http://127.0.0.1:8000/v1/chat/completions",
+  "request": {
+    "model": "qwen2.5-1.5b",
+    "messages": [
+      {
+        "role": "user",
+        "content": "请用一句话解释大模型推理中 KV Cache 的作用。"
+      }
+    ],
+    "n": 1,
+    "temperature": 0.0,
+    "max_tokens": 32,
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    }
+  },
+  "http_status": 200,
+  "clock": "time.perf_counter",
+  "t0_perf_counter_s": 698.981744219,
+  "response_headers_s": 0.022484446000021308,
+  "observed_until_exit_s": 0.470830388999957,
+  "timing_definition": {
+    "start": "immediately before HTTP open; after request JSON preparation",
+    "content_time": "complete SSE event delivered to parser; nonempty delta.content",
+    "end": "client observes complete [DONE] SSE event",
+    "tpot": "(done - first_content) / (usage.completion_tokens - 1), G > 1",
+    "scope": "single local request; no client concurrency wait; not GPU internal timing"
+  },
+  "recorded_at_utc": "2026-10-23T06:22:08.457724+00:00",
+  "purpose": "single_request_measurement_smoke_not_performance_comparison"
+}

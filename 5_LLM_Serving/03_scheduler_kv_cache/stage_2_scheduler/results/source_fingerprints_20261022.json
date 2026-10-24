@@ -1,0 +1,100 @@
+{
+  "recorded_date": "2026-10-22",
+  "scope": "Current workspace functional rerun and CPU teaching traces; no temporary core replacement",
+  "sources": [
+    {
+      "path": "paged_kv.py",
+      "sha256": "689211d2ed7bcd03dd7937d31fe1361653863d2e3ec348ace025538d651449bb"
+    },
+    {
+      "path": "paged_kv_store.py",
+      "sha256": "5be8c3cdeaa19834a6bf32821ebc944023861ea9ab69f9a2d49920828f29286e"
+    },
+    {
+      "path": "attention_reference.py",
+      "sha256": "5f083113fa6b189afdcbd189a9f4e87fd1f75e7b72867c7a78ed2c1aab1ccd5f"
+    },
+    {
+      "path": "prefix_cache.py",
+      "sha256": "809a22b6f40960f2271228e27408639ebd637adfc0faacce216cfe844be7ff68"
+    },
+    {
+      "path": "scheduler.py",
+      "sha256": "a1aa76384f07843c30dd866bae355e00b145b522d15c2c13e362e287102dfe4f"
+    },
+    {
+      "path": "scheduler_simulator.py",
+      "sha256": "c8815ec21d1690f35fa63f89e83e5f6f2df3aebc4fff69b9a59a86ae9ad8f720"
+    },
+    {
+      "path": "teaching_scheduler.py",
+      "sha256": "081dc11682f8db9e714ae878be8ed209b60c8c305b5635e3abf04a135d462350"
+    },
+    {
+      "path": "record_scheduler_traces.py",
+      "sha256": "f45007cd94257a455a688146e850ed49ebbcdea85e2f43ee929fdad1af5a28b1"
+    },
+    {
+      "path": "tests/test_addressing.py",
+      "sha256": "a9d7c8f932358e08c61f54b97a89db5897648a489d83619255c8eaa7a15819d3"
+    },
+    {
+      "path": "tests/test_attention_reference.py",
+      "sha256": "dbe991a44a3bc1cc559d38cf43159fce01f4efc166fe05b445759b5fd6433bed"
+    },
+    {
+      "path": "tests/test_block_pool.py",
+      "sha256": "b6e36b883837961c8361ffe7bec71ae53a056a4fa45bca4ae5b9199560afaaf3"
+    },
+    {
+      "path": "tests/test_kv_store.py",
+      "sha256": "bcf2a9fa8b37ebd050b4f3a4b9704ce0621a1e6edd6a56ca538bd54697252ddf"
+    },
+    {
+      "path": "tests/test_preemption.py",
+      "sha256": "9a94e8a7798948a3f517ae5fb19eae520d27a14e99c2d2bd9fe29ee9a87ab16e"
+    },
+    {
+      "path": "tests/test_prefix_cache.py",
+      "sha256": "2de38e043102e00f20c508320135a0d3ff8466d45e7bd2e47987d0c8dd1bace7"
+    },
+    {
+      "path": "tests/test_prefix_eviction.py",
+      "sha256": "9c4ea635b41dbaacf3883f6292b5d5bd36a97a463535a26cba6280e87946a4d4"
+    },
+    {
+      "path": "tests/test_prefix_hashes.py",
+      "sha256": "cd40c872596e842a345016740c9574e8c1ed4beb9adaff7acb29dfb1000fe912"
+    },
+    {
+      "path": "tests/test_prefix_sharing.py",
+      "sha256": "3298f1b492427148c5e9f122865aa06a3ab8862e05a9a84a7ea525d6a19f6f17"
+    },
+    {
+      "path": "tests/test_request_kv.py",
+      "sha256": "8c366d26480cb31542e778bc36fc5896dbd08b8900f2f18aee4ecdebf2b32c37"
+    },
+    {
+      "path": "tests/test_scheduler_simulator.py",
+      "sha256": "63230a0d3ad8f3b0a183e916d135fcee6e737292c4bdc06fc5d5b3f11f8def24"
+    },
+    {
+      "path": "tests/test_scheduler.py",
+      "sha256": "edbb15e47a7c8e87ef15a0d8dd96834654bb02cf3e5adb264a19c8665232e26d"
+    },
+    {
+      "path": "tests/test_teaching_scheduler.py",
+      "sha256": "d610207a8a7a40607e131efc1e52ada0ab9867e3b640c883d3aea5b11502bcc7"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "results/raw/tests_pass_20261022.log",
+      "sha256": "f27d6b1b682caa1f6a5560633b9213f3976a55fdf500340b8726f783e7774169"
+    },
+    {
+      "path": "results/scheduler_traces_20261022.json",
+      "sha256": "5973398627c1f25c1de8b373b67725bda75b764660585d901c394d9669c00f94"
+    }
+  ]
+}
