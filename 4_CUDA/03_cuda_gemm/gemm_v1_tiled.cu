@@ -38,11 +38,11 @@ __global__ void gemm_v1_tiled(const float* __restrict__ A,
                               const float* __restrict__ B, 
                               float* __restrict__ C, 
                               int M, int N, int K) {
-    // 静态分配 Shared Memory                            
+    // 静态分配 Shared Memory
     __shared__ float As[TILE_SIZE][TILE_SIZE];
     __shared__ float Bs[TILE_SIZE][TILE_SIZE];
 
-    int bx = blockIdx.x; int by = blockIdx.y;
+    int bx = blockIdx.x;  int by = blockIdx.y;
     int tx = threadIdx.x; int ty = threadIdx.y;
 
     // 当前线程负责的 C 矩阵全局行列号
@@ -53,36 +53,37 @@ __global__ void gemm_v1_tiled(const float* __restrict__ A,
 
     // 沿 K 维度按 TILE_SIZE 分块推进
     int num_tiles = (K + TILE_SIZE - 1) / TILE_SIZE;
-    for(int i = 0; i < num_tiles; ++i) {
+    for (int i = 0; i < num_tiles; ++i) {
 
-        // 协作加载 A 和 B 的 Tile 到 Shared Memory (处理边界)
-        if(row < M && (i * TILE_SIZE + tx) < K) {
+        // 1. 协作加载 A 和 B 的 Tile 到 Shared Memory (处理边界)
+        if (row < M && (i * TILE_SIZE + tx) < K) {
             As[ty][tx] = A[row * K + (i * TILE_SIZE + tx)];
         } else {
             As[ty][tx] = 0.0f;
         }
 
-        if((i * TILE_SIZE + ty) < K && col < N) {
+        if ((i * TILE_SIZE + ty) < K && col < N) {
             Bs[ty][tx] = B[(i * TILE_SIZE + ty) * N + col];
         } else {
             Bs[ty][tx] = 0.0f;
         }
 
-        // 同步：等待整个 Block 加载完毕
+        // 2. 同步：等待整个 Block 加载完毕
         __syncthreads();
 
-        // 在 Shared Memory 中做局部点积累加
-        #pragma unroll
-        for(int k = 0; k < TILE_SIZE; ++k) {
+        // 3. 在 Shared Memory 中做局部点积累加
+        // 这里带上循环展开，因为 TILE_SIZE 是编译器常量，让编译器直接把循环展开成 32 条连续的 FMA（乘累加）指令，消除循环控制和分支跳转的开销
+        #pragma unroll 
+        for (int k = 0; k < TILE_SIZE; ++k) {
             sum += As[ty][k] * Bs[k][tx];
         }
 
-        // 同步：等待所有线程计算完毕，准备加载下一个 Tile
+        // 4. 同步：等待所有线程计算完毕，准备加载下一个 Tile
         __syncthreads();
     }
-    
-    // 写回结果
-    if(row < M && col < N) {
+
+    // 5. 写回结果
+    if (row < M && col < N) {
         C[row * N + col] = sum;
     }
 }
@@ -107,7 +108,7 @@ __global__ void gemm_v1_tiled_transpose_b(const float* __restrict__ A,
         const int b_col = tile * TILE_SIZE + ty;
 
         As[ty][tx] = (row < M && a_col < K) ? A[row * K + a_col] : 0.0f;
-        // Bs[k_local][n_local] 对应 B[n_global][k_global]。
+        // Bs[k_local][n_local] 对应 B[n_global][k_global]。     B[b_col * K + col] -> B[col * K + b_col]
         Bs[ty][tx] = (col < N && b_col < K) ? B[col * K + b_col] : 0.0f;
         __syncthreads();
 

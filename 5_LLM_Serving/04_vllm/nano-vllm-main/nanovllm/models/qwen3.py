@@ -1,3 +1,4 @@
+# Qwen3 模型实现
 import torch
 from torch import nn
 import torch.distributed as dist
@@ -76,15 +77,17 @@ class Qwen3Attention(nn.Module):
     ) -> torch.Tensor:
         qkv = self.qkv_proj(hidden_states)
         q, k, v = qkv.split([self.q_size, self.kv_size, self.kv_size], dim=-1)
+        # reshape 成 [token, 头, head_dim]
         q = q.view(-1, self.num_heads, self.head_dim)
         k = k.view(-1, self.num_kv_heads, self.head_dim)
         v = v.view(-1, self.num_kv_heads, self.head_dim)
-        if not self.qkv_bias:
-            q = self.q_norm(q)
+        if not self.qkv_bias: # Qwen3 走这条分支
+            q = self.q_norm(q) # 在 head_dim 维上逐头归一化
             k = self.k_norm(k)
-        q, k = self.rotary_emb(positions, q, k)
+        # RMSNorm 作用在最后一维 head_dim 上，所以把张量 reshape 成 [token, 头, head_dim] 后直接送进去，天然就是「逐头」归一化
+        q, k = self.rotary_emb(positions, q, k) # 再加旋转位置
         o = self.attn(q, k, v)
-        output = self.o_proj(o.flatten(1, -1))
+        output = self.o_proj(o.flatten(1, -1)) # 把头维摊平后投影回 hidden
         return output
 
 
@@ -153,6 +156,7 @@ class Qwen3DecoderLayer(nn.Module):
             hidden_states, residual = self.input_layernorm(hidden_states), hidden_states
         else:   # 后续层：norm 同时吐出新残差
             hidden_states, residual = self.input_layernorm(hidden_states, residual)
+            
         hidden_states = self.self_attn(positions, hidden_states)
         hidden_states, residual = self.post_attention_layernorm(hidden_states, residual)
         hidden_states = self.mlp(hidden_states)
@@ -184,11 +188,12 @@ class Qwen3Model(nn.Module):
 
 
 class Qwen3ForCausalLM(nn.Module):
+    # 权重映射，把合并的 qkv_proj、gate_up_proj 拆分
     packed_modules_mapping = {
-        "q_proj": ("qkv_proj", "q"),
+        "q_proj": ("qkv_proj", "q"), # 字符串 shard_id
         "k_proj": ("qkv_proj", "k"),
         "v_proj": ("qkv_proj", "v"),
-        "gate_proj": ("gate_up_proj", 0),
+        "gate_proj": ("gate_up_proj", 0), # 整数 shard_id
         "up_proj": ("gate_up_proj", 1),
     }
 
@@ -199,6 +204,7 @@ class Qwen3ForCausalLM(nn.Module):
         super().__init__()
         self.model = Qwen3Model(config)
         self.lm_head = ParallelLMHead(config.vocab_size, config.hidden_size)
+        # Qwen3-0.6B 这类小模型会把 Embedding 和 LMHead 的权重绑定（共享同一张表），加载时直接把 embed 权重拷给 lm_head，省一份显存
         if config.tie_word_embeddings:
             self.lm_head.weight.data = self.model.embed_tokens.weight.data
 
@@ -209,6 +215,7 @@ class Qwen3ForCausalLM(nn.Module):
     ) -> torch.Tensor:
         return self.model(input_ids, positions)
 
+    # 单独调用 LMHead：前向只算到 hidden state，logits 的计算被拆到单独一步，方便和采样配合
     def compute_logits(
         self,
         hidden_states: torch.Tensor,

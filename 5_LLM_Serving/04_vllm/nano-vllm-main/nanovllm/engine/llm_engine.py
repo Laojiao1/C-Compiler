@@ -1,3 +1,4 @@
+# 引擎主循环：调度 → 前向 → 采样 → 更新
 import atexit
 from dataclasses import fields
 from time import perf_counter
@@ -53,45 +54,65 @@ class LLMEngine:
     # add_request 把一条 prompt 变成一个 Sequence 放进调度器。
     # prompt 可以是字符串（内部先 encode）也可以是现成的 token id 列表：
     def add_request(self, prompt: str | list[int], sampling_params: SamplingParams):
+        # 如果传过来的是字符串
         if isinstance(prompt, str):
+            # 调用 HuggingFace 分词器，将字符串转换为整数列表
             prompt = self.tokenizer.encode(prompt)
+        # 如果传入的就是整数列表，跳过 if，构造 Sequence 对象
         seq = Sequence(prompt, sampling_params)
         self.scheduler.add(seq)
 
     # 一次完整的 调度 -> 前向 -> 写回
     def step(self):
+        # 1. 调度：选出 Batch 并分配显存块
         seqs, is_prefill = self.scheduler.schedule() # 选 batch
 
         # 注意这里的符号编码：+表示 prefill，-表示 decode
+
         # 后续 generate 靠符号区分当前是 prefill 还是 decode 阶段
         num_tokens = sum(seq.num_scheduled_tokens for seq in seqs) if is_prefill else -len(seqs) 
 
-        token_ids = self.model_runner.call("run", seqs, is_prefill) # 跑模型 + 采样
-        self.scheduler.postprocess(seqs, token_ids, is_prefill) # 写回、判断结束
+        # 2. 跑前向：GPU 前向计算与采样
+        token_ids = self.model_runner.call("run", seqs, is_prefill)
+
+        # 3. 写回：状态更新与显存回收
+        self.scheduler.postprocess(seqs, token_ids, is_prefill) 
+
+        # outputs 只挑选 is_finished == True 的序列
         outputs = [(seq.seq_id, seq.completion_token_ids) for seq in seqs if seq.is_finished]
+
         return outputs, num_tokens
 
     def is_finished(self):
         return self.scheduler.is_finished()
 
+    # 事件驱动主循环：注册请求 → 驱动系统时钟（step）→ 收集已经完结的请求
     def generate(
         self,
         prompts: list[str] | list[list[int]],
         sampling_params: SamplingParams | list[SamplingParams],
         use_tqdm: bool = True,
     ) -> list[str]:
+        # 进度条
         pbar = tqdm(total=len(prompts), desc="Generating", dynamic_ncols=True, disable=not use_tqdm)
+
+        # 将 sampling_params 广播成与 prompts 等长的列表，为了后续的批处理实例化
         if not isinstance(sampling_params, list):
             sampling_params = [sampling_params] * len(prompts)
 
-        # 广播：单个 SamplingParams 复制给每条 prompt
+        # 1. 遍历输入，调用 add_request() 登记每条请求，批量实例化 Sequence 并挂入 waiting 队列
         for prompt, sp in zip(prompts, sampling_params):
             self.add_request(prompt, sp)
+
         outputs = {}
         prefill_throughput = decode_throughput = 0.
+
         while not self.is_finished():
-            t = perf_counter()
+            t = perf_counter() # perf_counter 是一个专门用来做高精度代码测速的系统级计时器
+
+            # 2. 只要 Scheduler 里还有未完成的请求，就反复调用 step (调度 -> GPU 前向 -> 状态写回)
             output, num_tokens = self.step() # 跑一步，拿回本步完成的序列
+
             if num_tokens > 0:
                 prefill_throughput = num_tokens / (perf_counter() - t)
             else:
@@ -100,12 +121,15 @@ class LLMEngine:
                 "Prefill": f"{int(prefill_throughput)}tok/s",
                 "Decode": f"{int(decode_throughput)}tok/s",
             })
+
             for seq_id, token_ids in output:
+                # 乱序收集结果：如果有序列刚好跑完 -> outputs[seq_id] = token_ids
                 outputs[seq_id] = token_ids
                 pbar.update(1)
         pbar.close()
 
-        # 按 seq_id 排序后解码成文本
+        # 3. 按 seq_id 重新排好序 ──> Tokenizer 解码文本 ──> 返回给用户
         outputs = [outputs[seq_id] for seq_id in sorted(outputs.keys())]
         outputs = [{"text": self.tokenizer.decode(token_ids), "token_ids": token_ids} for token_ids in outputs]
         return outputs
+ 

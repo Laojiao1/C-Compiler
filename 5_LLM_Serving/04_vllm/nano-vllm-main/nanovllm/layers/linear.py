@@ -1,3 +1,4 @@
+# 列/行/QKV/合并 并行 Linear
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -51,6 +52,10 @@ class ReplicatedLinear(LinearBase):
         return F.linear(x, self.weight, self.bias)
 
 
+"""
+按输出维度切分，每张卡算出一部分输出列。权重加载时用 narrow 沿 dim=0 取本 rank 的分片
+前向是不平的 F.linear，不需要通信
+"""
 class ColumnParallelLinear(LinearBase):
 
     def __init__(
@@ -73,12 +78,15 @@ class ColumnParallelLinear(LinearBase):
         return F.linear(x, self.weight, self.bias)
 
 
+"""
+按中间维切
+"""
 class MergedColumnParallelLinear(ColumnParallelLinear):
 
     def __init__(
         self,
         input_size: int,
-        output_sizes: list[int],
+        output_sizes: list[int], # 每个子矩阵各自的输出维
         bias: bool = False,
     ):
         self.output_sizes = output_sizes
@@ -93,6 +101,9 @@ class MergedColumnParallelLinear(ColumnParallelLinear):
         param_data.copy_(loaded_weight)
 
 
+"""
+按头切分，每卡算自己负责的那些注意力头
+"""
 class QKVParallelLinear(ColumnParallelLinear):
 
     def __init__(
@@ -128,6 +139,9 @@ class QKVParallelLinear(ColumnParallelLinear):
         param_data.copy_(loaded_weight)
 
 
+"""
+收回中间维，需要 all_reduce
+"""
 class RowParallelLinear(LinearBase):
 
     def __init__(

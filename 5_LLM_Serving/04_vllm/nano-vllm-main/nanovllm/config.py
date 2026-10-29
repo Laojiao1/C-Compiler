@@ -1,3 +1,4 @@
+# Config 全局配置（dataclass）
 import os
 from dataclasses import dataclass
 from transformers import AutoConfig

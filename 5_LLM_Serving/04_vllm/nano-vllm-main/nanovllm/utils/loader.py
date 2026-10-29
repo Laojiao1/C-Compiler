@@ -1,3 +1,4 @@
+# safetensors 权重加载
 import os
 from glob import glob
 import torch
