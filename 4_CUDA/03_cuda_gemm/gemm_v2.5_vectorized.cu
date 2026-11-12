@@ -74,7 +74,7 @@ gemm_v2_5_vectorized_pipeline(const float* __restrict__ A,
     int global_a_row = by * BM + a_vec_row;
     int global_a_col = 0 + a_vec_col * 4;
     if (global_a_row < M && (global_a_col + 3) < K) {
-        // 使用 float4 一次性拉取 16 字节
+        // 使用 float4 一次性拉取 16 字节，最后的[0]相当于解引用，将 float4* 转换为 float4
         reinterpret_cast<float4*>(&As[0][a_vec_row][a_vec_col * 4])[0] =
             reinterpret_cast<const float4*>(&A[global_a_row * K + global_a_col])[0];
     } else {
