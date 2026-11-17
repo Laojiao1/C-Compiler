@@ -33,8 +33,7 @@ void attention_cpu_reference(
                 dot += q[row * d + inner] * k[col * d + inner];
             }
             // mask
-            scores[row * n + col] =
-                (shape.causal && col > row) ? negative_infinity : dot * scale;
+            scores[row * n + col] = (shape.causal && col > row) ? negative_infinity : dot * scale;
         }
     }
 
@@ -88,8 +87,7 @@ cudaError_t launch_unfused_attention(
 
     // ----- 计算 S = Q * K^T -----
     // 复用阶段三的 tiled GEMM：transpose_b=true 表示 K 保持 [N,d]。存储但按 K^T 读取，不产生额外转置矩阵。
-    cudaError_t status = cuda_ops::launch_gemm_v1_tiled(
-        q, k, scores, n, n, d, true, stream);
+    cudaError_t status = cuda_ops::launch_gemm_v1_tiled(q, k, scores, n, n, d, true, stream);
     if (status != cudaSuccess) {
         return status;
     }
@@ -97,15 +95,13 @@ cudaError_t launch_unfused_attention(
     // ----- 启动单独的 Softmax Kernel 完成 Scale + Mask + Row-wise Softmax ----- 
     // 直接复用阶段四的 fused scale + mask + softmax，S 与 P 仍是两个独立全局矩阵，所以这里只减少 launch，不改变 Unfused 的物化本质。
     const float scale = 1.0f / std::sqrt(static_cast<float>(d));
-    status = cuda_ops::launch_fused_scale_mask_softmax(
-        scores, probabilities, scale, n, n, shape.causal, stream);
+    status = cuda_ops::launch_fused_scale_mask_softmax(scores, probabilities, scale, n, n, shape.causal, stream);
     if (status != cudaSuccess) {
         return status;
     }
 
     // 调用传统 GEMM 计算 O = P * V 
-    return cuda_ops::launch_gemm_v1_tiled(
-        probabilities, v, output, n, d, n, false, stream);
+    return cuda_ops::launch_gemm_v1_tiled(probabilities, v, output, n, d, n, false, stream);
 }
 
 // unfused 显存流量分析函数
@@ -132,13 +128,10 @@ AttentionTraffic unfused_traffic_model(const gpu_config::AttentionShape& shape) 
     const double output_write = n * d;
 
     // 中间结果
-    const double intermediate =
-        qk_score_write + softmax_accesses + pv_p_reads;
+    const double intermediate = qk_score_write + softmax_accesses + pv_p_reads;
 
     // 总流量
-    const double total_floats =
-        qk_reads + qk_score_write + softmax_accesses +
-        pv_p_reads + pv_v_reads + output_write;
+    const double total_floats = qk_reads + qk_score_write + softmax_accesses + pv_p_reads + pv_v_reads + output_write;
 
     return {total_floats * sizeof(float), intermediate * sizeof(float)};
 }
