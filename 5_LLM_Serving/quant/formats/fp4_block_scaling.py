@@ -2,7 +2,7 @@ from pathlib import Path
 
 import torch
 
-from fp8_scaling import quantize_e4m3
+from .fp8_scaling import quantize_e4m3
 
 # 实现就近偶数舍入（银行家舍入算法）
 def round_e2m1(x: torch.Tensor) -> torch.Tensor:
@@ -72,7 +72,7 @@ def show_outlier_example() -> None:
 
 
 def show_layer_error() -> None:
-    path = Path(__file__).with_name("down_proj_sample.pt")
+    path = Path(__file__).parents[1] / "weight_quant" / "down_proj_sample.pt"
     sample = torch.load(path, map_location="cpu", weights_only=True)
     w, bias = sample["weight"], sample["bias"]
     x = sample["validation"]["x"]

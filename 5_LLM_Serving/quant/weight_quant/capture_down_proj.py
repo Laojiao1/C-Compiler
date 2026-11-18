@@ -65,7 +65,7 @@ def capture_linear_inputs(tokenizer, model):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("down_proj_sample.pt"))
+    parser.add_argument("--output", type=Path, default=Path(__file__).with_name("down_proj_sample.pt"))
     parser.add_argument("--revision", default=DEFAULT_REVISION, help="Cached Hugging Face revision")
     args = parser.parse_args()
 

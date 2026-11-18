@@ -48,7 +48,7 @@ def show_small_example() -> None:
 
 
 def show_layer_error() -> None:
-    path = Path(__file__).with_name("down_proj_sample.pt")
+    path = Path(__file__).parents[1] / "weight_quant" / "down_proj_sample.pt"
     sample = torch.load(path, map_location="cpu", weights_only=True)
     w, bias = sample["weight"], sample["bias"]
     x = sample["validation"]["x"]
