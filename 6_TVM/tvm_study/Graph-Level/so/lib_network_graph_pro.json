@@ -1,0 +1,107 @@
+{
+  "nodes": [
+    {
+      "op": "null", 
+      "name": "x", 
+      "inputs": []
+    }, 
+    {
+      "op": "null", 
+      "name": "w", 
+      "inputs": []
+    }, 
+    {
+      "op": "null", 
+      "name": "bias", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_layout_transform", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_layout_transform", 
+        "src_layout": "NC", 
+        "dst_layout": "NC8n", 
+        "hash": "1ecd11f21e1c2bb1"
+      }, 
+      "inputs": [
+        [
+          1, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_nn_contrib_dense_pack_expand_dims_add_nn_relu", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "3", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_nn_contrib_dense_pack_expand_dims_add_nn_relu", 
+        "weight_layout": "NC8n", 
+        "hash": "89f38d49975f7c1e"
+      }, 
+      "inputs": [
+        [
+          0, 
+          0, 
+          0
+        ], 
+        [
+          3, 
+          0, 
+          0
+        ], 
+        [
+          2, 
+          0, 
+          0
+        ]
+      ]
+    }
+  ], 
+  "arg_nodes": [0, 1, 2], 
+  "heads": [
+    [
+      4, 
+      0, 
+      0
+    ]
+  ], 
+  "attrs": {
+    "dltype": [
+      "list_str", 
+      [
+        "float32", 
+        "float32", 
+        "float32", 
+        "float32", 
+        "float32"
+      ]
+    ], 
+    "device_index": [
+      "list_int", 
+      [1, 1, 1, 1, 1]
+    ], 
+    "storage_id": [
+      "list_int", 
+      [0, 1, 2, 3, 4]
+    ], 
+    "shape": [
+      "list_shape", 
+      [
+        [1024, 1024], 
+        [1024, 1024], 
+        [1024], 
+        [128, 1024, 8], 
+        [1024, 1024]
+      ]
+    ]
+  }, 
+  "node_row_ptr": [0, 1, 2, 3, 4, 5]
+}
